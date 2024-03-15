@@ -10,6 +10,8 @@
     "server": "nodemon ./app/back/server.js"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
+    "axios": "^1.6.7",
     "express": "^4.18.3",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.1",
