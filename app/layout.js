@@ -13,12 +13,12 @@ export default function Layout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+        <main className="flex h-screen flex-col md:flex-row md:overflow-hidden bg-[#fff]">
           <div className="w-full flex-none md:w-64">
             <SideNav />
           </div>
-          <div className="flex-grow p-2 md:overflow-y-auto bg-yellow-300">{children}</div>
-        </div>
+          <div className="flex-grow pt-5 p-2 md:overflow-y-auto">{children}</div>
+        </main>
       </body>
     </html>
   );

@@ -3,9 +3,9 @@ import Table from "./components/Table";
 export default async function Home() {
 
   return (
-    <main className="flex flex-col items-center justify-start bg-slate-400">
-      <h2 className="text-xl">Lista de libros</h2>
+    <section className="flex flex-col items-center justify-start">
+      <h2 className="flex text-2xl mb-5">Lista de libros</h2>
       <Table />
-    </main>
+    </section>
   );
 };

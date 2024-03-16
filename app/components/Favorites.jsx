@@ -1,10 +1,10 @@
 import ListBook from "./ListBook";
-import { getBooks } from "../utils/actions";
+import { getFavorites } from "../utils/actions";
 import { Suspense } from "react";
 
-export default async function Table() {
+export default async function Favorites() {
 
-  const books = await getBooks();
+  const books = await getFavorites();
 
   return (
     <section className="overflow-x-auto">
@@ -15,9 +15,6 @@ export default async function Table() {
             <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">Autor</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">Fecha</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">Género</th>
-            <th className="px-4 py-2"></th>
-            <th className="px-4 py-2"></th>
-            <th className="px-4 py-2"></th>
             <th className="px-4 py-2"></th>
           </tr>
         </thead>
