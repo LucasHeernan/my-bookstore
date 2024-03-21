@@ -1,4 +1,5 @@
 import { getBookById } from "@/app/utils/actions";
+import BookData from "@/app/components/BookData";
 
 export default async function SingleBook({ params }) {
 
@@ -8,15 +9,7 @@ export default async function SingleBook({ params }) {
     <>
       <div>Página para editar libro</div>
       <br />
-      <h2>{book.title}</h2>
-      <br />
-      <span>{book.author}</span>
-      <br />
-      <span>{book.date}</span>
-      <br />
-      <span>{book.genre}</span>
-      <br />
-      <span>{book.description}</span>
+      <BookData id={params.id} book={book} />
     </>
   );
 };

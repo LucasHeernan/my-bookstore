@@ -1,5 +1,7 @@
 'use server';
 import axios from 'axios';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export async function getBooks() {
   try {
@@ -33,8 +35,8 @@ export async function getFavorites() {
 
 export async function createBook(bookData) {
   try {
-    const response = await axios.post('http://localhost:5000/api/books', bookData);
-    return response.data;
+    const response = await axios.post('http://localhost:5000/api/books', bookData).then(e => e.data);
+    return response;
   } catch (error) {
     console.error('Error creating book:', error);
     throw error;
@@ -43,33 +45,31 @@ export async function createBook(bookData) {
 
 export async function updateBook(id, updatedBookData) {
   try {
-    const response = await axios.put(`http://localhost:5000/api/books/${id}`, updatedBookData);
-    return response.data;
+    await axios.put(`http://localhost:5000/api/books/${id}`, updatedBookData);
+    revalidatePath('/');
+    redirect('/');
   } catch (error) {
     console.error('Error updating book:', error);
     throw error;
   }
 };
 
-// export async function updateFavorite(id) {
-//   try {
-//     //  BUSCO EL LIBRO
-//     const updatedBook = await getBookById(id);
-//     //  CAMBIO LA PROPIEDAD FAVORITO
-//     updatedBook.favorite = !updatedBook.favorite;
-//     //  ACTUALIZO CON LA FUNCIÓN update PASANDOLÉ ID Y FAV
-//     const response = await updateBook(id, updatedBook.favorite).then(e => e.data);
-//     return response;
-//   } catch (error) {
-//     console.error('Error toggling favorite:', error);
-//     throw error;
-//   }
-// };
+export async function updateFavorite(id, favorite) {
+  try {
+    await axios.put(`http://localhost:5000/api/books/${id}`, { favorite: !favorite });
+    revalidatePath('/');
+    return;
+  } catch (error) {
+    console.error('Error al realizar la solicitud:', error);
+    throw error;
+  }
+};
 
 export async function deleteBook(id) {
   try {
-    const response = await axios.delete(`http://localhost:5000/api/books/${id}`);
-    return response.data;
+    await axios.delete(`http://localhost:5000/api/books/${id}`);
+    revalidatePath('/');
+    return console.log('Libro eliminado exitosamente');
   } catch (error) {
     console.error('Error deleting book:', error);
     throw error;
