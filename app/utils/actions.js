@@ -11,10 +11,10 @@ export async function getBooks() {
   }
 };
 
-export const getBookById = async (id) => {
+export async function getBookById(id) {
   try {
-    const response = await axios.get(`http://localhost:5000/api/books/${id}`);
-    return response.data;
+    const response = await axios.get(`http://localhost:5000/api/books/${id}`).then(e => e.data);
+    return response;
   } catch (error) {
     console.error('Error fetching book by ID:', error);
     throw error;
@@ -23,8 +23,8 @@ export const getBookById = async (id) => {
 
 export async function getFavorites() {
   try {
-    const response = await axios.get('http://localhost:5000/api/books/favorites');
-    return response.data;
+    const response = await axios.get('http://localhost:5000/api/books/favorites').then(e => e.data);
+    return response;
   } catch (error) {
     console.error('Error fetching books:', error);
     throw error;
@@ -50,6 +50,21 @@ export async function updateBook(id, updatedBookData) {
     throw error;
   }
 };
+
+// export async function updateFavorite(id) {
+//   try {
+//     //  BUSCO EL LIBRO
+//     const updatedBook = await getBookById(id);
+//     //  CAMBIO LA PROPIEDAD FAVORITO
+//     updatedBook.favorite = !updatedBook.favorite;
+//     //  ACTUALIZO CON LA FUNCIÓN update PASANDOLÉ ID Y FAV
+//     const response = await updateBook(id, updatedBook.favorite).then(e => e.data);
+//     return response;
+//   } catch (error) {
+//     console.error('Error toggling favorite:', error);
+//     throw error;
+//   }
+// };
 
 export async function deleteBook(id) {
   try {

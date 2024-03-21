@@ -1,4 +1,7 @@
+"use client";
 import { PlusIcon, PencilSquareIcon, TrashIcon, StarIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { deleteBook } from '../utils/actions';
 
 export default function ListBook({ id, title, author, date, genre, favorite }) {
   return (
@@ -8,19 +11,28 @@ export default function ListBook({ id, title, author, date, genre, favorite }) {
       <td className="whitespace-nowrap px-4 py-2 text-gray-700">{date}</td>
       <td className="whitespace-nowrap px-4 py-2 text-gray-700">{genre}</td>
       <td className="whitespace-nowrap px-2 py-2">
-        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100">
+        <Link
+          className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100"
+          href={`/detail/${id}`}
+        >
           <PlusIcon className="w-6 text-[#08745c]" />
-        </div>
+        </Link>
       </td>
       <td className="whitespace-nowrap px-2 py-2">
-        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100">
+        <Link
+          className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100"
+          href={`/update/${id}`}
+        >
           <PencilSquareIcon className="w-6 text-[#08745c]" />
-        </div>
+        </Link>
       </td>
       <td className="whitespace-nowrap px-2 py-2">
-        <div className="relative w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100">
+        <button
+          className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100"
+          onClick={() => deleteBook(id)}
+        >
           <TrashIcon className="w-6 text-[#08745c] hover:fill-[#6dceb4]" />
-        </div>
+        </button>
       </td>
       <td className="whitespace-nowrap px-2 py-2">
         <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all bg-gray-50 hover:bg-sky-100">

@@ -16,6 +16,9 @@ export default async function Favorites() {
             <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">Fecha</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">Género</th>
             <th className="px-4 py-2"></th>
+            <th className="px-4 py-2"></th>
+            <th className="px-4 py-2"></th>
+            <th className="px-4 py-2"></th>
           </tr>
         </thead>
 
