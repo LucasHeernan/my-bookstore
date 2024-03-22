@@ -35,8 +35,9 @@ export async function getFavorites() {
 
 export async function createBook(bookData) {
   try {
-    const response = await axios.post('http://localhost:5000/api/books', bookData).then(e => e.data);
-    return response;
+    await axios.post('http://localhost:5000/api/books', bookData);
+    revalidatePath('/');
+    redirect('/');
   } catch (error) {
     console.error('Error creating book:', error);
     throw error;

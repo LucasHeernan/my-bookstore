@@ -8,8 +8,7 @@ export default function CreateBook() {
     author: "",
     date: "",
     genre: "",
-    description: "",
-    favorite: false
+    description: ""
   });
 
   const handleInputChange = (e) => {
@@ -20,12 +19,14 @@ export default function CreateBook() {
     });
   };
 
-  const handleCreate = () => {
-    createBook(bookData);
+  const handleCreate = (e) => {
+    e.preventDefault();
+    const dateNumber = Number(bookData.date);
+    createBook({...bookData, date: dateNumber});
     setBookData({
       title: "",
       author: "",
-      year: "",
+      date: "",
       genre: "",
       description: ""
     });
@@ -53,7 +54,12 @@ export default function CreateBook() {
         <label htmlFor="description" className="block text-gray-700 font-bold mb-2">Description:</label>
         <textarea name="description" id="description" value={bookData.description} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 h-32"></textarea>
       </div>
-      <button type="button" onClick={handleCreate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Book</button>
+      <button
+        onClick={(e) => handleCreate(e)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Create Book
+      </button>
     </form>
   );
 };
